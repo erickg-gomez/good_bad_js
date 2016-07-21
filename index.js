@@ -52,3 +52,26 @@ console.log(inc2(5))
 console.log(inc3(5))
 console.log((3).add(8))
 console.log(demethodize(Number.prototype.add)(3, 8))
+
+//Problems 10-12
+
+//(10) Write a fn twice that takes a binary fn and return an urany fn that
+//passes its argument to the binary fn twice
+const twice = (binary) => (arg) => binary(arg, arg);
+
+//(11) Write a fn composeu that takes two unary fn and returns an unary fn
+//that calls them both.
+const composeu = (f, g) => (arg) => g(f(arg))
+
+//(12) Write a fn composeb that takes two binary fn and return a fn that calls
+//them both.
+
+const composeb = (f, g) => (arg1, arg2, arg3) => g(f(arg1, arg2), arg3)
+
+//test
+const double = twice(add)
+console.log(double(11)) //22
+const square = twice(mul)
+console.log(square(11)) //121
+console.log(composeu(double, square)(3)) //36
+console.log(composeb(add, mul)(2, 3, 5)) //25
